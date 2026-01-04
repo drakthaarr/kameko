@@ -18,7 +18,7 @@ The system is built on a non-blocking event loop using `asyncio`, coordinating s
 
 ---
 
-## 🛠 Technical Stack
+## Technical Stack
 
 | Category | Technology |
 | --- | --- |
@@ -72,7 +72,7 @@ The system requires a `.env` file with the following keys:
 
 ---
 
-## 📈 Potential Use Cases
+## Potential Use Cases
 
 * **Automated Moderation:** Real-time sentiment analysis of voice channels.
 * **Interactive NPCs:** Dynamic characters for gaming communities.
