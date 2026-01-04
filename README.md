@@ -1,7 +1,4 @@
 # kameko
-Since this is for your CV/Portfolio, the README should emphasize **software architecture**, **asynchronous programming**, **API integration**, and **signal processing**. It should position the bot as an "AI Agent" rather than just a "Discord Bot."
-
----
 
 # Multi-Agent Voice Interaction System (Kameko)
 
@@ -77,7 +74,3 @@ The system requires a `.env` file with the following keys:
 * **Automated Moderation:** Real-time sentiment analysis of voice channels.
 * **Interactive NPCs:** Dynamic characters for gaming communities.
 * **Accessibility:** Real-time transcription and voice-assisted navigation for visually impaired users in digital workspaces.
-
----
-
-**Would you like me to expand on the "Engineering Challenges" section or add a "Performance Metrics" section to further highlight your technical skills?**
