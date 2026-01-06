@@ -22,7 +22,7 @@ import io
 import logging
 from openai import AsyncOpenAI 
 
-# --- SYSTEM CONFIGURATION ---
+
 print("System Version: 1.1.2 (PROD_DEBUG)")
 warnings.filterwarnings("ignore", category=ResourceWarning)
 
@@ -42,7 +42,7 @@ def log(level, tag, message, color=LogColors.INFO):
     timestamp = time.strftime("%H:%M:%S")
     print(f"[{timestamp}] {color}[{level}] [{tag}] {message}{LogColors.RESET}")
 
-# --- DIAGNOSTICS ---
+
 load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
@@ -73,7 +73,7 @@ if not discord.opus.is_loaded():
     except Exception:
         log("WARN", "OPUS", "Audio library not found", LogColors.WARNING)
 
-# --- INITIALIZATION ---
+
 try:
     ai_client = AsyncOpenAI(
         base_url="https://openrouter.ai/api/v1",
@@ -101,7 +101,7 @@ HALLUCINATIONS = [
     "амедиатека", "перевод", "автор сценария"
 ]
 
-# --- AI LOGIC ---
+
 async def get_ai_decision(history_items):
     log("AI", "DECISION", f"Analyzing {len(history_items)} events...")
     dialog_text = ""
@@ -128,10 +128,10 @@ async def get_ai_decision(history_items):
             temperature=0.7,
             max_tokens=200,
         )
-        # Получаем контент ЗДЕСЬ
+
         result_content = completion.choices[0].message.content
         
-        # Чистим
+
         if "```" in result_content:
             result_content = result_content.replace("```json", "").replace("```", "").strip()
         
@@ -139,8 +139,7 @@ async def get_ai_decision(history_items):
         return data
         
     except Exception as e:
-        # Теперь переменная result_content доступна для логов, если она была создана
-        # Но лучше просто вывести ошибку e
+
         log("ERROR", "AI_LLM", f"Request failed: {e}", LogColors.ERROR)
         return {"should_speak": False, "response": ""}
 
@@ -212,7 +211,7 @@ class MultiTrackSink(Sink):
         self.recording_frames = 0
 
         # --- НАСТРОЙКИ VAD ---
-        self.volume_threshold = 500 # Порог громкости (если микрофон шумит, увеличь до 300-400)
+        self.volume_threshold = 500 # Порог громкости 
         self.silence_limit = 25    # Ждать 50 пакетов тишины (50 * 20мс = 1 секунда)
         self.min_recording_size = 100000 # Минимальный размер фразы (около 0.5 сек), чтобы не слать "пшики"
         
@@ -250,9 +249,9 @@ class MultiTrackSink(Sink):
                     stream.is_recording = True
                     stream.buffer = bytearray()
                 
-                stream.silence_counter = 0 # Сбрасываем счетчик тишины
+                stream.silence_counter = 0 
             
-            # 2. Если идет запись, но сейчас тихо (НИЖЕ порога)
+            # 2. Если идет запись, но сейчас тихо 
             elif stream.is_recording:
                 stream.silence_counter += 1
 
@@ -387,3 +386,4 @@ if __name__ == "__main__":
         bot.run(DISCORD_TOKEN)
     except Exception as e:
         log("FATAL", "CRASH", f"Bot crashed: {e}", LogColors.ERROR)
+
